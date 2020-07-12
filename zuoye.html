@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+//         1. Object.assign(obj1,obj2,obj3,......)
+// 可用于对象的拼接，将obj2，obj3......拼接到对象obj1上，并将obj1返回，obj1改变，其他对象不变。
+// var obj1={name:'张三'};
+// var obj2={age:18};
+// var obj3={say:function(){
+//   console.log('说话');
+// }}
+// console.log(Object.assign(obj1,obj2,obj3));
+// console.log(obj1,obj2);
+//         2.Object.is(a,b);
+// 用于判断两个值是否相同,与===类似，但又不完全一样
+
+// console.log(Object.is(+0,-0));
+// console.log(Object.is(NaN,NaN));
+//            3. obj.prototype.isPrototypeOf(b);
+// 确定一个对象是否存在于另一个对象的原型链中
+// function a(){
+// }
+// var b = new a();
+// console.log(a.prototype.isPrototypeOf(b));
+//            4. Object.defineProperty()
+// 直接在一个对象上定义一个新属性，或者修改一个对象的现有属性， 并返回这个对象。
+// 如果不指定configurable, writable, enumerable ，则这些属性默认值为false，
+// 如果不指定value, get, set，则这些属性默认值为undefined
+// 语法: Object.defineProperty(obj, prop, descriptor)
+// var obj = new Object();
+// Object.defineProperty(obj, 'name', {
+//     configurable: false,
+//     writable: true,
+//     enumerable: true,
+//     value: '张三'
+// })
+// console.log(obj.name)
+//              5. Object.defineProperties()
+// 直接在一个对象上定义一个或多个新的属性或修改现有属性，并返回该对象。
+// 语法: Object.defineProperties(obj, props)
+// props数据描述：
+
+// value: 属性对应的值,可以使任意类型的值，默认为 undefined
+// configurable: 是否可以删除目标属性或是否可以再次修改属性的特性
+// （writable, configurable, enumerable）。设置为true可以被删除或可以重新设置特性；
+// 设置为false，不能被可以被删除或不可以重新设置特性。默认为false。
+// writable: 属性的值是否可以被重写。设置为true可以被重写。默认为false。
+// enumerable: 属性是否可以被枚举(使用for...in或Object.keys())。设置为true可以被枚举。
+// 默认为false。
+// var obj = new Object();
+// Object.defineProperties(obj, {
+//     name: {
+//         value: '张三',
+//         configurable: false, 
+//         writable: true, 
+//         enumerable: true
+//     },
+//     age: {
+//         value: 18,
+//         configurable: true
+//     }
+// })
+// console.log(obj.name, obj.age)
+//               6. Object.freeze(obj)
+// 阻止修改现有属性的特性和值，并阻止添加新属性。
+
+
+
+
+// ES6对象的遍历
+
+// 1. for in 循环
+// 循环遍历对象自身的和继承的可枚举属性(不含Symbol属性)
+// var obj={
+//   name:'小米',
+//   age:18,
+//   say:function(){
+//     console.log('你好');
+//   }
+// }
+// for (var i in obj) {
+//   console.log(obj[i]);
+// }
+// 2. Object.keys(obj)
+// 返回一个数组，包括对象自身的（不含继承的）
+// 所有可枚举属性（不含 Symbol 属性）的键名
+// var obj = {'a':'123','b':'345'};
+// console.log(Object.keys(obj));  
+
+
+
+
+// var obj1 = { 100: "a", 2: "b", 7: "c"};
+// console.log(Object.keys(obj1)); 
+
+
+// var obj2 = Object.create({}, { getFoo : { value : function () { return this.foo } } });
+// obj2.foo = 1;
+// console.log(Object.keys(obj2)); 
+// 3. Object.getOwnPropertyNames(obj);
+// 返回一个数组,包含对象自身的所有属性(不含Symbol属性,但是包括不可枚举属性)
+// var obj = { name: 'zhangsan', age: 20 };
+// console.log(Object.getOwnPropertyNames(obj))
+// 4. Object.getOwnPropertySymbols(obj);
+// 返回一个数组，包含对象自身的所有Symbol属性。
+// 5. Reflect.ownKeys(obj);
+// 返回一个数组,包含对象自身的所有属性,不管属性名是Symbol或字符串,也不管是否可枚举
+// var obj = { name: 'zhangsan', age: 20,sex: "man"};
+// console.log(Reflect.ownKeys(obj))
+// 6. Object.values(obj)
+// 方法返回一个给定对象自身的所有可枚举属性值的数组，
+// 值的顺序与使用for...in循环的顺序相同( 区别在于 for-in 循环枚举原型链中的属性 )
+// var obj = { name: 'zhangsan', age: 20 };
+// console.log(Object.values(obj));
+
+
+// console.log(Math.abs(-6))
+// console.log(Math.round(4.6))
+// console.log(Math.ceil(2.32))
+// console.log(Math.max(6,9))
+// console.log(Math.min(6,9))
+// console.log(Math.random())
+// console.log(Math.trunc(2.32))
+// console.log(Math.sqrt(4))
+// console.log(Math.sin(0.5))
+// console.log(Math.cos(0.5))
+// console.log(Math.tan(0.5))
+// console.log(Math.asin(0.5))
+// console.log(Math.acos(0.5))
+// console.log(Math.atan(0.5))
+
+// toFixed() 方法
+// toFixed() 方法可把 Number 四舍五入为指定小数位数的数字。
+// var Number=4.56155
+// console.log(Number.toFixed(3))
+
+
+// 取x的y次方根
+
+// console.log(Math.pow(16,1/2))
+// 查找数组中最大和最小的数字
+
+// var arr=[23,4,651,461,1231,411];
+// var maxArr=Math.max(...arr);    
+// var minArr=Math.min(...arr);   
+
+// 取x-y的随机数、随机整数
+
+// Math.floor( Math.random() * (y - x) + x )      包含x不包含y
+// Math.floor( Math.random() * (y - x + 1) + x  )    包含x包含y
+// str.charAt(index);
+// 功能：返回下标为index的子字符串
+// 参数: 数字下标
+// 返回值: 对应下标字符串
+// var str='hello world';
+// console.log(str.charAt(0))
+
+// str.charCodeAt(index);
+// 功能: 根据下标，返回对应下标的字符的ACSCII码
+// 参数: 数字下标
+// 返回值: 对应下表字符ACSCII码
+// var str='hello world';
+// console.log(str.charCodeAt(0))
+
+// String.fromCharCode(97);
+// 功能: 将ACSCII码转化成字符串，涉及到数字与字母之间的转化可以使用该方法
+// 参数: 十进制ACSCII码
+// 返回值: ACSCII码对应字符串
+// console.log(String.fromCharCode(97))
+
+// str.indexOf('a');
+// 功能： 查找一个字符或者字符串在字符串中第一次出现的位置,未找到则返回-1、
+// 参数： 要查找的字符串
+// 返回值： 目标字符串的下标位置，未找到则未-1
+// var str='hello world';
+// console.log(str.indexOf('a'))
+
+// str.lastIndexOf('a')
+// 功能： 倒序查找一个字符或者字符串在字符串中第一次出现的位置,
+// 返回位置，,未找到则返回-1
+// var str='hello world';
+// console.log(str.lastIndexOf('o'))
+
+// str.replace("替换的内容","替换后的内容")
+// 功能： 将指定的字符串替换，只能替换第一个
+// 参数： 1. 要替换的内容； 2. 替换后的内容
+// 返回值： 返回替换后的字符串
+// 注意： 不修改原字符串，所以使用时需要将replace方法的返回值保存
+// var str='hello world';
+// console.log(str.replace('o','a'))
+
+// str.slice(起始下标,结束下标)
+// 功能：字符串截取，识别负数，跟数组相同
+// 参数：1. 截取起始下标； 2. 截取结束下标。参数可以是负数，
+// 负数表示倒数，只传一个参数表示从起始下标截取到最后
+// 返回值：返回值是截取到的字符串
+// 注意： 截取时，包含起始下标，不包含结束下标； 不修改原字符串
+// var str='hello world';
+// console.log(str.slice(0,3))
+
+// str.substring(起始下标,结束下标)
+// 功能： 字符串截取，同slice方法，但不识别负数
+
+// str.substr(起始下标，截取的长度)
+// 功能：根据长度进行字符串截取
+// 参数： 1. 起始下标； 2. 截取的长度
+// var str='hello world';
+// console.log(str.substr(0,4))
+
+// str.split('')
+// 功能： 以某一字符串将目标字符串分割，可用于将特定格式的字符串转化如2018/10/20
+// 参数： 需要分割的字符串
+// 返回值： 原字符串呗参数字符串分割之后的数组
+// 注意： 返回值中传入的字符串会被删掉，不修改原字符串
+// 注/var str='hello world';
+// console.log(str.split('o'));  
+// console.log(str.split(''));
+
+// str.toLowerCase()
+// 将str字符串中的字符转化为小写，不修改原字符串
+// var str='HELLO world';
+// console.log(str.toLowerCase())
+
+// str.toUpperCase()
+// 将str字符串中的字符转化为大写
+
+// str.trim()
+// 将字符串左右空格去除，可用于接收表单数据 IE9以下不识别
+// 返回值： 去掉左右空格之后的字符串
+// var a='   aa   bb   ';
+// a.trim();
+
+// str.match()
+// 在字符串内检索指定的值，或找到一个或多个正则表达式的匹配
+// 参数： 可以是字符串或者正则表达式
+// 返回值：检索到的结果
+// var str='hello world';
+//   console.log(str.match('o') )
+// console.log(console.log(str.match('o') ))
+
+// str.concat('a','b','c')
+// 功能： 用于连接两个或多个字符串,与数组中的concat方法很象，不会修改原字符串
+// 参数： 多个字符串
+// 返回值：拼接之后的长字符串
+// console.log("a",'B',"c")
+
+// str.padStart() 、str.padEnd()
+// 功能： 向字符串开头(padStart)或结尾(padEnd)添加字符，
+// 使字符串达到指定的长度。返回在原字符串开头或末尾填充指定的
+// 填充字符串直到目标长度所形成的新字符串
+// 参数1: 当前字符串需要填充到的目标长度。如果这个数值小于当前字符串的长度，
+// 则返回当前字符串本身。
+// 参数2: （可选）填充字符串。如果字符串太长，使填充后的字符串长度超过了目标长度，
+// 则只保留最左侧的部分，其他部分会被截断。
+// 注意事项
+// 不写第二个参数填充字符串，则默认用空格填充
+// 填充字符串会自动重复直到达到目标长度
+// 如果原字符串长度已经大于等于目标长度，则直接返回原字符串
+// 'abc'.padStart(10);         
+// 'abc'.padStart(10, "123");  
+// 'abc'.padStart(6,"123465"); 
+// 'abc'.padStart(8, "0");     
+// 'abc'.padStart(1);          
+
+// 'abc'.padEnd(10);         
+// 'abc'.padEnd(10, "123"); 
+// 'abc'.padEnd(6,"123465"); 
+// 'abc'.padEnd(8, "0");     
+// 'abc'.padEnd(1);
+
+// arr.push(); 向数组的末尾追加元素
+// 会修改原数组
+// 返回值：修改后的length值
+// 可以追加多个
+// var arr=[1,2,3];
+// console.log(arr.push(5,6))
+
+// arr.unshift(); 向数组的开头添加函数
+// 会修改原数组
+// 返回值：修改后的length值
+// 可以追加多个
+//  var arr=[1,2,3];
+//  console.log(arr.unshift(5,6))
+ 
+// arr.pop(); 删除末尾的元素
+// 会修改原数组
+// 返回值：被删除的数据
+// 只能删除一个
+// var arr=[1,2,3];
+// console.log( arr.pop())
+
+// arr.shift(); 开头删除一个元素
+// 会修改原数组
+// 返回值：被删除的数据
+// 只能删除一个
+// var arr=[1,2,3];
+// console.log(arr.shift())
+
+// arr.splice(位置，删除元素的个数，要追加的元素); 任意位置添加删除
+// 添加或者删除包含对应下标
+// 添加数据时：删除元素的个数写0；
+// 可以同时删除和添加（先删除，后添加）
+// 修改原数组
+// var arr=[1,2,3];
+// console.log(arr.splice(0,1,9))
+// console.log(arr)
+
+// arr.join("分隔符") 使用分隔符将数组数据隔开变为字符串
+// 不修改原数组
+// 返回值是分隔好的字符串
+// var arr=[1,2,3];
+// console.log(arr.join(","))
+
+// arr.slice(截取的起始下标,结束下标) 数组的截取
+// 截取时，包含起始下标，不包含结束下标
+// 不修改原数组
+// 返回值是截取到的数组
+// 参数可以是负数，负数表示倒数，只传一个参数表示从起始下标截取到最后
+// var arr=[1,2,3];
+// console.log(arr.slice(0,2))
+
+// arr.concat 多个数组的连接
+// 不修改原数组
+// 返回值是连接之后的新数组
+// var arr1=[1,2,3];
+// var arr2=[4,5,6];
+// console.log(arr1.concat(arr2,[7,8,9]));
+
+// arr.indexOf(值); 查找某个值在数组中第一次出现的下标
+// 返回值是数据的下标，没有找到则返回-1
+// var arr=[1,52,22];
+// console.log(arr.indexOf(22));
+
+// arr.sort() 数组的排序
+// 如果没有参数，则从字符的编码开始按顺序排
+// 如果有参数，这个参数必须是一个函数（回调函数）这个回调函数有两个参数，分别是a，b
+// 修改原数组
+// 返回值是排序之后的数组
+// var arr3=[1,5,6,99,52,663,22,66,552,6,622];
+// arr3.sort(function(a,b){  
+// return a-b;
+// })
+// console.log(arr3);
+// arr.sort((a,b)=>a-b)    
+// arr.sort((a,b)=>b-a)
+
+// arr.forEach() 遍历数组
+// 接收一个回调函数，回调函数第一个参数是 数组值
+// 第二个参数是 下标
+// 注/var arr3=[1,5,6,99,52,663,22,66,552,6,622];
+// arr3.forEach(function(value,index){
+//   console.log(index,value)
+// })
+// arr3.forEach((value,index)=>{console.log(index,value)})
+
+// arr.filter() 过滤（根据条件筛选数组元素）
+// 根据回调函数的返回值进行元素筛选
+// 返回值是true，该元素会保留
+// 返回值是false，该元素跳过
+// 不修改原数组
+// 返回值是筛选之后的数组
+// var arr=[1,5,6,99,52,663,22,66,552,123,6,622];
+// var newArr =arr.filter(function(value,index){
+// return value>100;       
+// })
+// console.log(newArr);
+
+// arr.map() 映射 将数组中的所有数据按照条件改变，形成新数组
+// 将回调函数每次的返回值，组成一个新的数组
+// 返回值是映射改变之后的数组
+// 不修改原数组
+// var arr=[1,5,6,99,52,663,22,66,552,123,6,622];
+// var end = arr.map((value,index)=>value*2);
+// console.log(end);
+
+// arr.some() 判断 根据回调函数的判断条件来选择真假
+// 只要有一个回调函数返回值是true，最终some结果是true；
+// var arr3=[1,5,6,99,52,663,22,66,552,123,6,622];
+// var end=arr3.some(function(value,index){
+// return value<500;
+// });
+// console.log(end);
+
+// arr.every() 判断 根据回调函数的判断条件来选择真假(与some比较记忆)
+// 只要有一个回调函数返回值是false，最终every结果是false；
+// 注/var arr3=[1,5,6,99,52,663,22,66,552,123,6,622];
+// var end=arr3.every(function(value,index){
+// return value<500;
+// });
+// console.log(end);
+
+// arr.reverse() 数组倒序
+// 返回修改后的数组
+// 改变原数组
+// var arr=[1,5,8,6,9,4,2,3];
+// console.log(arr.reverse());   
+// console.log(arr);   
+
+// Array.from
+// Array.from 方法用于将两类对象转为真正的数组：
+// 类似数组的对象和可遍历的对象（包括 ES6 新增的数据结构 Set 和 Map）
+// var a={length:2,0:'aaa',1:'bbb'};  
+// Array.from(a);       
+// var b={length:2};  
+// Array.from(b); 
+
+// Array.of
+// Array.of方法用于将一组值，转换为数组。
+// Array.of总是返回参数值组成的数组。如果没有参数，就返回一个空数组。
+// 注/Array.of() 
+// Array.of(undefined)
+// Array.of(1)
+// Array.of(1, 2) 
+
+// arr.includes()
+// 用于检查数组是否包含某元素，包含返回true，否则返回false
+// 无法检测对象是否存在
+// 假如只想知道某个值是否在数组中而并不关心它的索引位置，建议使用includes()。
+// 如果想获取一个值在数组中的位置，那么你只能使用indexOf方法。并且includes()可以识别NaN
+var arr = [1,2,{name:"张三"}]
+console.log(arr.includes(2) )
+console.log(arr.includes(4) )
+console.log(arr.includes({name:"张三"}))
+ </script>
+</body>
+</html>
